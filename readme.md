@@ -32,8 +32,12 @@
     ```
     zstd --decompress result/sd-image/nixos-installer-rpi5-kernel.img.zst -o ./nixos-rpi-image
     ```
-2. Flash the nixos-rpi-image with rpi-imager (only working on windows, can't find any file on linux)
+2. Flash the nixos-rpi-image with rpi-imager or dd 
+    ```
+    sudo dd if=./nixos-rpi-image.img of=/dev/sda bs=4M status=progress conv=fsync
+    ```
 3. Boot 
+
 
 ## build and deploy 
 build it with:
