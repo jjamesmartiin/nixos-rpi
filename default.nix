@@ -16,7 +16,7 @@ let
     #    src = ./systems/pi2;
     src = ./systems + "/${system}";
     modules = ./modules;
-    secrets = ./secrets;
+    #secrets = ./secrets;
     #defs = ./defs;
     deps = ./deps;
 
@@ -28,7 +28,7 @@ let
       # copy dependencies 
       #cp -r $defs $TMP/defs
       cp -r $modules $TMP/modules
-      cp -r $secrets $TMP/secrets
+      #cp -r $secrets $TMP/secrets
       cp -r $deps $TMP/deps
 
       # make systems dir
