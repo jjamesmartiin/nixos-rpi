@@ -2,6 +2,16 @@
 { config, ... }:
 let
   inherit (import ./deps) nixpkgs pkgs; 
+
+  theHostName = "rpi-test";
+  theIPAddress = "10.1.1.22";
+  theAuthorizedKeys = [ 
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICrsBek1D273N2sLOXPEK1b3hpfdKM4fUUH7eLJHcxFr" 
+  ];
+  theDnsServers = [
+    "10.1.1.3"
+    "8.8.8.8"
+  ];
 in
 {
   imports =
@@ -29,9 +39,13 @@ in
   # enable SSH access
   services.openssh.enable = true;
   services.openssh.settings.PermitRootLogin = "yes";
-  users.users.root.openssh.authorizedKeys.keys = [ 
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICrsBek1D273N2sLOXPEK1b3hpfdKM4fUUH7eLJHcxFr" 
-  ];
+  users.users.root.openssh.authorizedKeys.keys = theAuthorizedKeys;
+  users.users.test = {
+    isNormalUser = true;
+    initialPassword = "abc123";
+    extraGroups = [ "wheel" ];
+    openssh.authorizedKeys.keys = theAuthorizedKeys;
+  };
 
   # install some basic programs
   environment.systemPackages = with pkgs; [
@@ -48,10 +62,14 @@ in
     fastfetch
   ];
 
-  networking.nameservers = [
-    "10.1.1.3"
-    "8.8.8.8"
-  ];
+  networking.hostName = theHostName;
+  networking.interfaces.end0.useDHCP = false;
+  networking.interfaces.end0.ipv4.addresses = [ {
+    address = theIPAddress;
+    prefixLength = 24;
+  } ];
+  networking.defaultGateway = "10.1.1.1";
+  networking.nameservers = theDnsServers;
 
   # Do not change this value
   system.stateVersion = "25.11";
