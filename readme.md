@@ -46,8 +46,7 @@ nix-build
  
 deploy it with
 ```
-
-
+./build-and-deploy.sh -s $SYSTEM
 ```
 
 

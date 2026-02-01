@@ -1,7 +1,6 @@
 let
-  inherit (import ./deps/nixos-2511.nix) nixpkgs pkgs;
-
   # deps
+  inherit (import ./deps/default.nix) nixpkgs pkgs;
   agenix = (import ./deps/agenix.nix);
   nixos-raspberrypi = (import ./deps/nixos-raspberrypi.nix);
 
@@ -17,7 +16,6 @@ let
     #    src = ./systems/pi2;
     src = ./systems + "/${system}";
     modules = ./modules;
-    roles = ./roles;
     secrets = ./secrets;
     #defs = ./defs;
     deps = ./deps;
@@ -31,7 +29,6 @@ let
       #cp -r $defs $TMP/defs
       cp -r $modules $TMP/modules
       cp -r $secrets $TMP/secrets
-      cp -r $roles $TMP/roles
       cp -r $deps $TMP/deps
 
       # make systems dir
@@ -93,6 +90,7 @@ in
     src = configuration;
 
     inherit agenix;
+    inherit nixos-raspberrypi;
 
     build-script = pkgs.writeScript "builder.sh" ''
       source $stdenv/setup
@@ -102,9 +100,6 @@ in
       cp -r --no-preserve=mode $src $out/configuration
       ln -s ${nixpkgs} $out/nixpkgs
       ln -s ${profile} $out/profile
-
-      mkdir -p $out/deps
-      ln -s ${nixos-raspberrypi} $out/deps/nixos-raspberrypi
 
       cp -a ${rebuild-command} $out/nixos-rebuild-switch
     '';

@@ -4,7 +4,7 @@
 ## make a symlink and then add this in the system
 
 # let 
-#   inherit (import ./defs/nixos-2511.nix) nixpkgs pkgs;
+#   inherit (import ./defs) nixpkgs pkgs;
 # in
 
 let
