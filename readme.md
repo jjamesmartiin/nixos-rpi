@@ -30,7 +30,7 @@
 - [ ] once the image is built then how do we flash it to the micro sd card? 
 1. read the `result` and decompress the image: 
     ```
-    zstd --decompress result/sd-image/nixos-installer-rpi5-kernel.img.zst -o ./nixos-rpi-image
+    zstd --decompress result/sd-image/nixos-installer-rpi5-kernel.img.zst -o ./nixos-rpi-image.img
     ```
 2. Flash the nixos-rpi-image with rpi-imager or dd 
     ```
@@ -46,11 +46,15 @@ export SYSTEM="rpi-test"
 nix-build
 ```
 
+change what you want in [systems/rpi-test/default.nix](systems/rpi-test/default.nix)
 
  
 deploy it with
 ```
 ./build-and-deploy.sh -s $SYSTEM
+
+# or type it manually
+./build-and-deploy.sh -s rpi-test
 ```
 
 
