@@ -54,6 +54,18 @@ let
         # Let's check if we need to disable anything. 
         # The flake disabled: (modulesPath + "/installer/sd-card/sd-image-aarch64-installer.nix")
         # We are not importing that, so we should be fine.
+
+        # get the gui working
+        # services.xserver = {
+        #   enable = true;
+        #   desktopManager = {
+        #     xterm.enable = false;
+        #     xfce.enable = true;
+        #   };
+        # };
+        # services.displayManager.defaultSession = "xfce";
+
+
       }
     ];
   };

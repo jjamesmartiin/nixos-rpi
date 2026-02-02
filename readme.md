@@ -6,9 +6,9 @@
     ```
 3. Build the image:
     ``` 
-    ./build-image.sh
+    ./build-image.sh # set a 5 min timer
     ```
-    - This uses the binary cache to speed up the build (should take minutes, not hours).
+    - This uses the binary cache to speed up the build (should take ~5 minutes).
     - if you have issues see the common troubleshooting below: 
         - **cross compilation issues:**
             ```
@@ -34,12 +34,12 @@
     ```
     lsblk
     DISKTOFLASH="/dev/sdX" # replace sdX with your micro sd card
-    sudo dd if=./nixos-rpi-image.img of=$DISKTOFLASH bs=4M status=progress conv=fsync
+    sudo dd if=./nixos-rpi-image.img of=$DISKTOFLASH bs=4M status=progress oflag=direct # set a 5 min timer
+                                                                                      # it should be just over that ~313.543 seconds.
 
-    # set a 5 min timer, it should be just over that ~313.543 seconds.
     sudo eject $DISKTOFLASH
     ```
-3. Boot 
+3. Boot and login with username: `nixos` and password: `a`
 
 
 ## build and deploy 

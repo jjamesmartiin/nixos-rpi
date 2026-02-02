@@ -18,3 +18,6 @@ nix-build ./rpi-image/default.nix \
   "$@"
 
 echo "Build complete. Result linked in ./result"
+
+zstd --decompress result/sd-image/nixos-image-rpi5-kernel.img.zst -o ./nixos-rpi-image.img
+
