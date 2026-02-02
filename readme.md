@@ -8,9 +8,9 @@
     - edit the line that says `# your ssh pub key here` and replace it with your actual public key.
 3. Build the image:
     ``` 
-    nix build .#installerImages.rpi5
+    ./build-image.sh
     ```
-    - press 'y' to everything
+    - This uses the binary cache to speed up the build (should take minutes, not hours).
     - if you have issues see the common troubleshooting below: 
         - **cross compilation issues:**
             ```
