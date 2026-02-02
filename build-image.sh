@@ -12,6 +12,7 @@ echo "Using Cache: $CACHIX_URL"
 # We supply both the custom cache and the standard cache
 # --option substituters overrides the list, so we must include the default one.
 nix-build ./rpi-image/default.nix \
+  --arg nixpkgs '(import ./deps/cached-nixpkgs.nix)' \
   --option substituters "$CACHIX_URL https://cache.nixos.org" \
   --option trusted-public-keys "$CACHIX_KEY cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=" \
   "$@"
