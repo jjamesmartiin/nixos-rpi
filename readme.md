@@ -1,11 +1,5 @@
 # Full process 
 ## building the image
-<!-- 1. Clone the repository: -->
-<!--     ``` -->
-<!--     git clone git@github.com:jjamesmartiin/nixos-raspberrypi.git -->
-<!--     ``` -->
-<!-- 2. Edit the `flake.nix` file to include your SSH public key: -->
-<!--     - edit the line that says `# your ssh pub key here` and replace it with your actual public key. -->
 1. Clone this repo
     ```
     git clone git@github.com:jjamesmartiin/nixos-rpi.git
@@ -31,15 +25,15 @@
             ```
 
 ## flashing the image
-- [ ] once the image is built then how do we flash it to the micro sd card? 
 1. read the `result` and decompress the image: 
     ```
     zstd --decompress result/sd-image/nixos-image-rpi5-kernel.img.zst -o ./nixos-rpi-image.img
     ```
 2. Flash the nixos-rpi-image with rpi-imager or dd 
+    - dd commands:
     ```
     lsblk
-    DISKTOFLASH="/dev/sdc" # replace sdX with your micro sd card
+    DISKTOFLASH="/dev/sdX" # replace sdX with your micro sd card
     sudo dd if=./nixos-rpi-image.img of=$DISKTOFLASH bs=4M status=progress conv=fsync
 
     # set a 5 min timer, it should be just over that ~313.543 seconds.
@@ -49,7 +43,7 @@
 
 
 ## build and deploy 
-build it with:
+build the configuration with:
 ```
 export SYSTEM="rpi-test"
 nix-build
@@ -60,9 +54,9 @@ change what you want in [systems/rpi-test/default.nix](systems/rpi-test/default.
  
 deploy it with
 ```
-./build-and-deploy.sh -s $SYSTEM
+./build-and-deploy.sh -s $SYSTEM -t [whatever IP your system is on]
 
-# or type it manually
+# or type it manually, you can omit the -t flag if you have DNS or a hosts file
 ./build-and-deploy.sh -s rpi-test
 ```
 
