@@ -26,6 +26,7 @@ let
       # Basic configuration
       {
         system.stateVersion = "25.11"; # Adjust as needed
+        networking.useDHCP = true;
       }
       
       # RPi Modules
