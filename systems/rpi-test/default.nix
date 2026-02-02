@@ -9,7 +9,6 @@ let
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICrsBek1D273N2sLOXPEK1b3hpfdKM4fUUH7eLJHcxFr" 
   ];
   theDnsServers = [
-    "10.1.1.3"
     "8.8.8.8"
   ];
 in
