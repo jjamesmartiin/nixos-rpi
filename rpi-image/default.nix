@@ -3,6 +3,11 @@
 }:
 
 let
+  authorizedKeys = [ 
+    # Add your SSH key here:
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICrsBek1D273N2sLOXPEK1b3hpfdKM4fUUH7eLJHcxFr" 
+  ];
+
   # Import nixpkgs with our overlays
   pkgs = import nixpkgs {
     inherit system;
@@ -36,6 +41,10 @@ let
       
       # Minimal user config to make it buildable
       {
+      # enable SSH access
+      services.openssh.enable = true;
+      services.openssh.settings.PermitRootLogin = "yes";
+      users.users.root.openssh.authorizedKeys.keys = authorizedKeys;
         users.users.nixos = {
           isNormalUser = true;
           extraGroups = [ "wheel" ];
