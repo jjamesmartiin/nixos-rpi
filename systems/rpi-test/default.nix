@@ -41,7 +41,7 @@ in
   users.users.root.openssh.authorizedKeys.keys = theAuthorizedKeys;
   users.users.test = {
     isNormalUser = true;
-    initialPassword = "abc123";
+    initialPassword = "a";
     extraGroups = [ "wheel" ];
     openssh.authorizedKeys.keys = theAuthorizedKeys;
   };
