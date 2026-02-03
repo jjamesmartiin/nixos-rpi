@@ -33,9 +33,9 @@
     - dd commands:
     ```
     lsblk
+
     DISKTOFLASH="/dev/sdX" # replace sdX with your micro sd card
     sudo dd if=./nixos-rpi-image.img of=$DISKTOFLASH bs=4M status=progress oflag=direct # set a 5 min timer
-                                                                                        # it should be just over that ~313.543 seconds.
  
     sudo eject $DISKTOFLASH
     ```
@@ -59,5 +59,6 @@ deploy it with
 # or type it manually, you can omit the -t flag if you have DNS or a hosts file
 ./build-and-deploy.sh -s rpi-test
 ```
+
 
 
