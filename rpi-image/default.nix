@@ -41,30 +41,34 @@ let
       
       # Minimal user config to make it buildable
       {
+      # hostname
+      networking.hostName = "nixos-rpi-installer";
+
       # enable SSH access
       services.openssh.enable = true;
       services.openssh.settings.PermitRootLogin = "yes";
       users.users.root.openssh.authorizedKeys.keys = authorizedKeys;
-        users.users.nixos = {
-          isNormalUser = true;
-          extraGroups = [ "wheel" ];
-        };
+      users.users.nixos = {
+        isNormalUser = true;
+        initialPassword = "a";
+        extraGroups = [ "wheel" ];
+        openssh.authorizedKeys.keys = authorizedKeys;
+      };
         # Need to disable the default sd-image module to avoid conflict if using the one from installer
         # But sd-image-raspberrypi.nix imports the standard one.
         # Let's check if we need to disable anything. 
         # The flake disabled: (modulesPath + "/installer/sd-card/sd-image-aarch64-installer.nix")
         # We are not importing that, so we should be fine.
 
-        # get the gui working
-        # services.xserver = {
-        #   enable = true;
-        #   desktopManager = {
-        #     xterm.enable = false;
-        #     xfce.enable = true;
-        #   };
-        # };
-        # services.displayManager.defaultSession = "xfce";
-
+      # get the gui working
+      # services.xserver = {
+      #   enable = true;
+      #   desktopManager = {
+      #     xterm.enable = false;
+      #     xfce.enable = true;
+      #   };
+      # };
+      # services.displayManager.defaultSession = "xfce";
 
       }
     ];
