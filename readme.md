@@ -35,7 +35,7 @@
     lsblk
 
     DISKTOFLASH="/dev/sdX" # replace sdX with your micro sd card
-    sudo dd if=./nixos-rpi-image.img of=$DISKTOFLASH bs=4M status=progress oflag=direct # set a 5 min timer
+    sudo dd if=./nixos-rpi-image.img of=$DISKTOFLASH bs=4M status=progress oflag=direct conv=fsync # set a 5 min timer
  
     sudo eject $DISKTOFLASH
     ```
