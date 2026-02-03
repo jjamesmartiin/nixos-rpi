@@ -35,8 +35,8 @@
     lsblk
     DISKTOFLASH="/dev/sdX" # replace sdX with your micro sd card
     sudo dd if=./nixos-rpi-image.img of=$DISKTOFLASH bs=4M status=progress oflag=direct # set a 5 min timer
-                                                                                      # it should be just over that ~313.543 seconds.
-
+                                                                                        # it should be just over that ~313.543 seconds.
+ 
     sudo eject $DISKTOFLASH
     ```
 3. Boot and login with username: `nixos` and password: `a`
