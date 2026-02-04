@@ -7,6 +7,10 @@ let
   theIPAddress = "10.1.1.22";
   theAuthorizedKeys = [ 
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICrsBek1D273N2sLOXPEK1b3hpfdKM4fUUH7eLJHcxFr" 
+
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPc6FJlIexlHZz+HOczL04E9o/MeS4bObS48JTkViVzw" # paul
+
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIODYfEvTn5PsOaDZ05yWBf+D5AMAA3omt/3VAc05VsrA" # lucas
   ];
   theDnsServers = [
     "8.8.8.8"
