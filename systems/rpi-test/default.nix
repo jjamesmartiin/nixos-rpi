@@ -66,13 +66,13 @@ in
   ];
 
   networking.hostName = theHostName;
-  networking.interfaces.end0.useDHCP = false;
-  networking.interfaces.end0.ipv4.addresses = [ {
-    address = theIPAddress;
-    prefixLength = 24;
-  } ];
-  networking.defaultGateway = "10.1.1.1";
-  networking.nameservers = theDnsServers;
+  networking.interfaces.end0.useDHCP = true;
+  # networking.interfaces.end0.ipv4.addresses = [ {
+  #   address = theIPAddress;
+  #   prefixLength = 24;
+  # } ];
+  # networking.defaultGateway = "10.1.1.1";
+  # networking.nameservers = theDnsServers;
 
   # Do not change this value
   system.stateVersion = "25.11";
