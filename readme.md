@@ -63,9 +63,9 @@ deploy it with
 ### Troubleshooting
 - **Truncated tar archive detected**:
     - If you see an error like `error: cannot read file from tarball: Truncated tar archive detected`, it means the local Nix cache is corrupted.
-    - **Fix**: Clear the cache and try again:
+    - **Fix**: Clear the cache on both rpi and deploying computer and try again:
         ```bash
-        rm -rf ~/.cache/nix/tarballs
+        rm -rf ~/.cache/nix/*
         ```
 
 
