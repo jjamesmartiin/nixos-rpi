@@ -47,12 +47,11 @@ let
       # enable SSH access
       services.openssh.enable = true;
       services.openssh.settings.PermitRootLogin = "yes";
-      users.users.root.openssh.authorizedKeys.keys = authorizedKeys;
+      users.users.root.initialPassword = "a";
       users.users.nixos = {
         isNormalUser = true;
         initialPassword = "a";
         extraGroups = [ "wheel" ];
-        openssh.authorizedKeys.keys = authorizedKeys;
       };
         # Need to disable the default sd-image module to avoid conflict if using the one from installer
         # But sd-image-raspberrypi.nix imports the standard one.
