@@ -46,7 +46,11 @@ let
 
       # enable SSH access
       services.openssh.enable = true;
-      services.openssh.settings.PermitRootLogin = "yes";
+      services.openssh.settings = {
+        PermitRootLogin = "yes";
+        PasswordAuthentication = "yes";
+        PubkeyAuthentication = false;
+      };
       users.users.root.initialPassword = "a";
       users.users.nixos = {
         isNormalUser = true;
