@@ -46,6 +46,21 @@ let
         PasswordAuthentication = true;
         PubkeyAuthentication = false;
       };
+
+      # Show IP addresses on terminal load
+      environment.interactiveShellInit = ''
+        echo "Waiting for network..."
+        sleep 5
+        echo "Available IP addresses:"
+        ip -br a
+      '';
+
+      # Autologin so the user sees the IP addresses immediately
+      services.getty.autologinUser = "nixos";
+
+      # Suppress dmesg output to the console
+      boot.consoleLogLevel = 0;
+
       users.users.root.initialPassword = "a";
       users.users.nixos = {
         isNormalUser = true;
